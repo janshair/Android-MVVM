@@ -2,11 +2,11 @@ package com.tapdevs.base.network.injection
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.tapdevs.base.BuildConfig
 import com.tapdevs.base.injection.qualifiers.NamedScheduler
 import com.tapdevs.base.injection.scopes.PerApplication
-import com.tapdevs.base.network.rest.ErrorMapper
-import com.tapdevs.base.network.rest.RestClientAlbums
+import com.tapdevs.base.network.api.MealCAtegoryApi
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -16,7 +16,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
@@ -50,7 +49,7 @@ class NetworkModule {
 
     @Provides
     @PerApplication
-    fun provideAlbumRestApi(retrofit: Retrofit, gson: Gson): RestClientAlbums = RestClientAlbums(retrofit, ErrorMapper(gson))
+    fun provideAlbumRestApi(retrofit: Retrofit): MealCAtegoryApi = retrofit.create(MealCAtegoryApi::class.java)
 
     @Provides
     @PerApplication
@@ -69,7 +68,7 @@ class NetworkModule {
         }
         return builder
                 .baseUrl(BuildConfig.BASE_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(converterFactory)
                 .build()
     }

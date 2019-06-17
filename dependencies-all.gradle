@@ -13,7 +13,7 @@ task ktlint(type: JavaExec, group: "verification") {
     main = "com.github.shyiko.ktlint.Main"
     args "src/**/*.kt"
 }
-preBuild.dependsOn(ktlint)
+//preBuild.dependsOn(ktlint)
 
 task ktlintFormat(type: JavaExec, group: "formatting") {
     description = "Fix Kotlin code style violations."
@@ -36,9 +36,6 @@ ext {
         // Kotlin //
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-        // Guava //
-        implementation "com.google.guava:guava:$guava_version"
-
         // Timber //
         implementation "com.jakewharton.timber:timber:$timber_version"
 
@@ -59,6 +56,15 @@ ext {
         implementation "androidx.recyclerview:recyclerview:$android_x"
         implementation "com.google.android.material:material:$android_material_design"
         implementation "androidx.constraintlayout:constraintlayout:$android_x_constraintLayout"
+
+        // Life cycle
+        implementation "androidx.lifecycle:lifecycle-extensions:$architecture_components_version"
+        implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_live_data"
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_live_data"
+        implementation "androidx.core:core-ktx:$android_ktx"
+
+
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,9 +95,15 @@ ext {
         implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
     }
 
+    coroutines = dependencyGroup {
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutines_call_adapter"
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // NETWORKING                                                                                 //
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     networking = dependencyGroup {
 

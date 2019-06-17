@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 
 apply from: '../config-android.gradle'
-apply from: '../config-properties.gradle'
 apply from: '../dependencies-all.gradle'
 
 dependencies {
@@ -14,4 +13,6 @@ dependencies {
     networking()
     coroutines()
     testing()
+
+    implementation project(path: ':base')
 }

@@ -18,7 +18,7 @@ class ErrorMapper(
         if (throwable is HttpException) {
             val errorBody: String
             try {
-                val errorResponse = throwable.response().errorBody()
+                val errorResponse = throwable.response()!!.errorBody()
                 if (errorResponse != null) {
                     errorBody = errorResponse.string()
                 } else {

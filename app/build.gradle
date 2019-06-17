@@ -8,11 +8,12 @@ enum BuildType {
 }
 
 static def getAppName(BuildType buildType) {
-    String APP_NAME = "Jan Shair - Albums"
+    String APP_NAME = "Jan Shair - Meals"
     switch (buildType) {
         case BuildType.DEBUG:
             return APP_NAME + " - " + BuildType.DEBUG.name()
     }
+    return APP_NAME
 }
 
 def versionMajor = 1
@@ -22,18 +23,12 @@ def versionPatch = 0
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.tapdevs.myalbums"
+        applicationId "com.tapdevs.meals"
         versionCode versionMajor * 100000 + versionMinor * 1000 + versionPatch * 10
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-
-        buildTypes {
-            debug {
-                applicationIdSuffix ".debug"
-                resValue "string", "app_name", getAppName(BuildType.DEBUG)
-            }
-        }
+        resValue "string", "app_name", getAppName(BuildType.DEBUG)
     }
 }
 
@@ -43,6 +38,6 @@ dependencies {
     networking()
 
     implementation project(path: ':base')
-    implementation project(path: ':albums')
+    implementation project(path: ':meals')
 
 }

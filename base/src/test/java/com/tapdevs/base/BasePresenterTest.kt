@@ -1,6 +1,6 @@
 package com.tapdevs.base
 
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 import org.junit.Before
 import org.mockito.MockitoAnnotations
 

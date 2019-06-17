@@ -1,1 +1,1 @@
-include ':app', ':base', ':albums'
+include ':app', ':base', ':meals'

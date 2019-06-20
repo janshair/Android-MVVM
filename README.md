@@ -8,9 +8,9 @@ This can be accessed by all modules. Contains utils, abstractions and network ca
 
 Contains main application and injections. Has access to all modules. 
 
-# 3. albums
+# 3. meals
 
-Provides albums code and unit tests.
+Provides meals code and unit tests.
 
 # Gradle
 
@@ -30,7 +30,7 @@ Contains group of dependencies.
 
 Contains dependencies version.
 
-#Libraries Used
+# Libraries Used
 
 1. Kotlin Coroutines
 2. Android Architecture Components(AndroidX, Lifecycle, LiveData, ViewModel)

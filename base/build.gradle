@@ -9,8 +9,8 @@ dependencies {
 
     core()
     support()
+    glide()
     dagger()
-    rxJava()
     networking()
     coroutines()
     testing()

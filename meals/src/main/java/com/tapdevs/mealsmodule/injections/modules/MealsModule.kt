@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.tapdevs.base.injection.qualifiers.ForActivity
 import com.tapdevs.base.injection.scopes.PerActivity
 import com.tapdevs.mealsmodule.ui.MealsActivity
-import com.tapdevs.mealsmodule.viewmodels.mealsCategory.MealCategoryViewModel
+import com.tapdevs.mealsmodule.ui.adapter.MealCategoriesAdapter
+import com.tapdevs.mealsmodule.viewmodels.mealsCategory.MealCategoryViewModelList
 import com.tapdevs.mealsmodule.viewmodels.mealsCategory.MealCategoryViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -26,7 +27,11 @@ class MealsModule {
     class ViewModel {
         @Provides
         @PerActivity
-        fun provideOverviewViewModel(activity: MealsActivity, factory: MealCategoryViewModelFactory): MealCategoryViewModel =
-            ViewModelProviders.of(activity, factory).get(MealCategoryViewModel::class.java)
+        fun provideOverviewViewModel(activity: MealsActivity, factory: MealCategoryViewModelFactory): MealCategoryViewModelList =
+            ViewModelProviders.of(activity, factory).get(MealCategoryViewModelList::class.java)
+
+        @Provides
+        @PerActivity
+        fun provideTracksAdapter(): MealCategoriesAdapter = MealCategoriesAdapter()
     }
 }

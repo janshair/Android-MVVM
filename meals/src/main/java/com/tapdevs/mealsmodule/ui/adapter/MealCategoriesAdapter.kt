@@ -1,40 +1,50 @@
 package com.tapdevs.mealsmodule.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.tapdevs.base.network.model.meal.category.MealCategory
+import com.tapdevs.mealsmodule.databinding.RowMealCategoryBinding
 import com.tapdevs.mealsmodule.R
-import kotlinx.android.synthetic.main.row_meal_category.view.*
+import com.tapdevs.mealsmodule.viewmodels.mealsCategory.MealCategoryViewModel
 
-class MealCategoriesAdapter : RecyclerView.Adapter<MealCategoriesAdapter.AlbumViewHolder>() {
+class MealCategoriesAdapter : RecyclerView.Adapter<MealCategoriesAdapter.MealCategoriesViewHolder>() {
 
-    var albums: List<MealCategory> = listOf()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
-        return AlbumViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_meal_category, parent, false))
+    var mealCategories: List<MealCategory> = listOf()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealCategoriesViewHolder {
+        return MealCategoriesViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.row_meal_category, parent, false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
-        return albums.size
+        return mealCategories.size
     }
 
-    override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        val album: MealCategory = albums[position]
-//        holder.albumID.text = album.id.toString()
-//        holder.userID.text = album.userId.toString()
-//        holder.title.text = album.title
+    override fun onBindViewHolder(holder: MealCategoriesViewHolder, position: Int) {
+        mealCategories[position].let {
+            with(holder) {
+                itemView.tag = it.categoryId
+                bind(it)
+            }
+        }
     }
 
-    fun setItems(albums: List<MealCategory>) {
-        this.albums = albums
+    fun setItems(mealCategoriesList: List<MealCategory>) {
+        this.mealCategories = mealCategoriesList
         notifyDataSetChanged()
     }
-    inner class AlbumViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var albumID: TextView = view.albumID
-        var userID: TextView = view.albumID
-        var title: TextView = view.albumID
+
+    inner class MealCategoriesViewHolder(private val binding: RowMealCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(mealCategory: MealCategory) {
+            with(binding) {
+                mealCategoryViewModel = MealCategoryViewModel(mealCategory)
+                executePendingBindings()
+            }
+        }
     }
 }

@@ -9,7 +9,6 @@ dependencies {
     core()
     support()
     dagger()
-    rxJava()
     networking()
     coroutines()
     testing()

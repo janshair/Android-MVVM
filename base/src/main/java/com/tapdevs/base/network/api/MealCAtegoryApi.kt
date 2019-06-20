@@ -1,10 +1,11 @@
 package com.tapdevs.base.network.api
 
-import com.tapdevs.base.network.model.meal.category.MealCategoryList
+import com.tapdevs.base.network.model.meal.category.MealCategoryWrapper
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
 interface MealCAtegoryApi {
 
     @GET("categories.php")
-    suspend fun getMealCategory(): MealCategoryList
+    fun getMealCategory(): Deferred<MealCategoryWrapper>
 }

@@ -11,6 +11,6 @@ class MealCategoryViewModelFactory @Inject constructor(
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MealCategoryViewModel(mealCategoryRepository) as T
+        return MealCategoryViewModelList(mealCategoryRepository) as T
     }
 }

@@ -2,7 +2,7 @@ package com.tapdevs.base.network.model.meal.category
 
 import com.google.gson.annotations.SerializedName
 
-data class MealCategoryList(
+data class MealCategoryWrapper(
     @SerializedName("categories")
-    val categories: List<MealCategory>
+    var categories: MutableList<MealCategory>? = null
 )

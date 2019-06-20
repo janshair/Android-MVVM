@@ -7,9 +7,9 @@ import kotlin.annotation.Retention
 @Qualifier
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
-annotation class NamedScheduler(val value: SchedulerType = SchedulerType.IO) {
+annotation class NamedDispatcher(val value: DispatcherType = DispatcherType.IO) {
 
-    enum class SchedulerType {
+    enum class DispatcherType {
         IO, UI
     }
 }

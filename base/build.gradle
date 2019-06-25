@@ -11,6 +11,7 @@ dependencies {
     support()
     glide()
     dagger()
+    room()
     networking()
     coroutines()
     testing()

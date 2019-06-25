@@ -2,10 +2,13 @@ package com.tapdevs.base.network.model.meal.category
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class MealCategory(
-    @SerializedName("idCategory")
+    @PrimaryKey @SerializedName("idCategory")
     val categoryId: String,
 
     @SerializedName("strCategory")
